@@ -104,6 +104,10 @@ class BlackjackViewModel : ObservableObject {
     func startNewGame() {
         if !isTimeUp {
             game.startNewGame()
+            if(game.isTimeUp) {
+                isTimeUp = true
+                timeRemaining = 0
+            }
             objectWillChange.send()
         }
     }

@@ -95,12 +95,20 @@ struct BlackjackModel {
         }
     
     mutating func startNewGame() {
+        // Sprawdzamy, czy użytkownik ma 0 na koncie
+        if playerBalance == 0 {
+            isGameOver = true
+            winner = "Game Over - Insufficient Funds"
+            isTimeUp = true
+            return
+        }
+
         currentBet = 0
         playerHand = []
         dealerHand = []
         deck = BlackjackModel.createDeck()
         shuffleDeck()
-        
+
         playerHand = [deck.removeFirst(), deck.removeFirst()]
         dealerHand = [deck.removeFirst(), deck.removeFirst()]
         playerScore = calculateScore(for: playerHand)
@@ -121,13 +129,13 @@ struct BlackjackModel {
             } else if winner == "Player Blackjack!" {
                 playerBalance += Int(Double(currentBet) * 2.5)  // Blackjack płaci 3:2
             } else if winner == "Draw" {
-                playerBalance += currentBet  // Remis - zwrot zakładu
+                playerBalance += currentBet
             }
-            // Jeśli dealer wygrał, nie zmieniamy salda (gracz już stracił zakład)
+            
         }
     }
         
-    // Funkcja, która dodaje kartę do ręki gracza
+    
     mutating func playerHits() {
         playerHand.append(deck.removeFirst())
         playerScore = calculateScore(for: playerHand)
@@ -151,24 +159,9 @@ struct BlackjackModel {
         
     private func calculateScore(for hand: [Card]) -> Int {
         var score = 0
-        var aces = 0
-        
-        // First count non-ace cards
+    
         for card in hand {
-            if card.value != "A" {
-                score += card.numericValue ?? 0
-            } else {
-                aces += 1
-            }
-        }
-        
-        // Add aces optimally
-        for _ in 0..<aces {
-            if score + 11 <= 21 {
-                score += 11
-            } else {
-                score += 1
-            }
+            score += card.numericValue ?? 0
         }
         
         return score

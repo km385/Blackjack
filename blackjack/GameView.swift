@@ -1,13 +1,13 @@
-//
-//  GameView.swift
-//  blackjack
-//
-//  Created by student on 08/01/2025.
-//
-
 import SwiftUI
+
 struct GameView: View {
     @ObservedObject var viewModel: BlackjackViewModel
+    
+    // Animation state
+    @State private var cardOffset: CGFloat = 25
+    @State private var cardScale: CGFloat = 0.8
+    @State private var showWinner = false
+    
     
     var body: some View {
         VStack(spacing: 20) {
@@ -28,9 +28,25 @@ struct GameView: View {
                 HStack {
                     if let firstCard = viewModel.dealerHand.first {
                         CardView(card: firstCard, faceUp: true)
+                            .scaleEffect(cardScale)
+                            .offset(y: cardOffset)
+                            .onAppear {
+                                withAnimation(.easeIn(duration: 0.5)) {
+                                    cardOffset = 0
+                                    cardScale = 1
+                                }
+                            }
                     }
                     ForEach(viewModel.dealerHand.dropFirst()) { card in
                         CardView(card: card, faceUp: viewModel.isGameOver)
+                            .scaleEffect(cardScale)
+                            .offset(y: cardOffset)
+                            .onAppear {
+                                withAnimation(.easeIn(duration: 0.5)) {
+                                    cardOffset = 0
+                                    cardScale = 1
+                                }
+                            }
                     }
                 }
                 
@@ -38,10 +54,7 @@ struct GameView: View {
                     .font(.title3)
             }
             .padding()
-//            .background(Color.white)
-//            .cornerRadius(15)
-//            .shadow(radius: 5)
-            
+
             VStack(alignment: .leading, spacing: 10) {
                 Text("Your Hand:")
                     .font(.title2)
@@ -50,6 +63,14 @@ struct GameView: View {
                 HStack {
                     ForEach(viewModel.playerHand) { card in
                         CardView(card: card, faceUp: true)
+                            .scaleEffect(cardScale)
+                            .offset(y: cardOffset)
+                            .onAppear {
+                                withAnimation(.easeIn(duration: 0.5)) {
+                                    cardOffset = 0
+                                    cardScale = 1
+                                }
+                            }
                     }
                 }
                 
@@ -57,15 +78,18 @@ struct GameView: View {
                     .font(.title3)
             }
             .padding()
-//            .background(Color.white)
-//            .cornerRadius(15)
-//            .shadow(radius: 5)
             
             if viewModel.isGameOver {
                 VStack(spacing: 15) {
                     Text(viewModel.winner ?? "Draw")
                         .font(.title)
                         .fontWeight(.bold)
+                        .opacity(showWinner ? 1 : 0)
+                        .onAppear {
+                            withAnimation(.easeIn(duration: 0.5)) {
+                                showWinner = true
+                            }
+                        }
                     
                     Button(action: viewModel.startNewGame) {
                         Text("New Game")
@@ -76,10 +100,21 @@ struct GameView: View {
                             .foregroundColor(.white)
                             .cornerRadius(15)
                     }
+                    .scaleEffect(showWinner ? 1 : 0.5)
+                    .opacity(showWinner ? 1 : 0)
+                    .onAppear {
+                        withAnimation(.easeInOut(duration: 0.7).delay(0.5)) {
+                            showWinner = true
+                        }
+                    }
                 }
             } else {
                 HStack(spacing: 20) {
-                    Button(action: viewModel.playerHits) {
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            viewModel.playerHits()
+                        }
+                    }) {
                         Text("Hit")
                             .font(.title2)
                             .padding()
@@ -89,7 +124,11 @@ struct GameView: View {
                             .cornerRadius(15)
                     }
                     
-                    Button(action: viewModel.playerStands) {
+                    Button(action: {
+                        withAnimation(.spring()) {
+                            viewModel.playerStands()
+                        }
+                    }) {
                         Text("Stand")
                             .font(.title2)
                             .padding()
@@ -100,7 +139,11 @@ struct GameView: View {
                     }
                     
                     if viewModel.canDoubleDown {
-                        Button(action: viewModel.doubleDown) {
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                viewModel.doubleDown()
+                            }
+                        }) {
                             Text("2x")
                                 .font(.title2)
                                 .padding()
@@ -119,5 +162,4 @@ struct GameView: View {
 
 #Preview {
     GameView(viewModel: BlackjackViewModel())
-        
 }

@@ -36,7 +36,7 @@ struct BettingView: View {
                   .gesture(
                       LongPressGesture(minimumDuration: 0.5)
                           .onEnded { _ in
-                              viewModel.betAmount = max(10, viewModel.betAmount - 50)
+                              viewModel.betAmount = max(10, viewModel.betAmount - 100)
                           }
                   )
                   .disabled(viewModel.betAmount <= 10)
@@ -68,7 +68,6 @@ struct BettingView: View {
                               if viewModel.playerBalance > 500 {
                                   viewModel.betAmount = min(500, viewModel.betAmount + 10)
                               } else {
-                                  // If player balance is less than 500, use the player balance
                                   viewModel.betAmount = min(viewModel.playerBalance, viewModel.betAmount + 10)
                               }
                           }
@@ -76,12 +75,10 @@ struct BettingView: View {
                   .gesture(
                       LongPressGesture(minimumDuration: 0.5)
                           .onEnded { _ in
-                              // If player balance > 500, limit the bet to 500
                               if viewModel.playerBalance > 500 {
                                   viewModel.betAmount = min(500, viewModel.betAmount + 50)
                               } else {
-                                  // If player balance is less than 500, use the player balance
-                                  viewModel.betAmount = min(viewModel.playerBalance, viewModel.betAmount + 50)
+                                  viewModel.betAmount = min(viewModel.playerBalance, viewModel.betAmount + 100)
                               }
                           }
                   )
