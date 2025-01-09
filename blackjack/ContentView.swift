@@ -11,18 +11,15 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            // Background color
             Color(.systemGray6)
                 .ignoresSafeArea()
             
             VStack {
-                // Header section
                 VStack(spacing: 10) {
                     Text("Blackjack")
                         .font(.system(size: 40, weight: .bold))
                         .padding(.top)
                     
-                    // Progress bar
                     ProgressView(value: Double(viewModel.timeRemaining), total: 120)
                         .frame(height: 10)
                         .padding(.horizontal)

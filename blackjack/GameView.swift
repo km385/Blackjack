@@ -11,7 +11,6 @@ struct GameView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            // Game stats
             HStack {
                 Text("Balance: $\(viewModel.playerBalance)")
                     .font(.headline)
@@ -21,7 +20,6 @@ struct GameView: View {
             }
             .padding(.horizontal)
             
-            // Dealer's section
             VStack(alignment: .leading, spacing: 10) {
                 Text("Dealer's Hand:")
                     .font(.title2)
@@ -44,7 +42,6 @@ struct GameView: View {
 //            .cornerRadius(15)
 //            .shadow(radius: 5)
             
-            // Player's section
             VStack(alignment: .leading, spacing: 10) {
                 Text("Your Hand:")
                     .font(.title2)
@@ -64,7 +61,6 @@ struct GameView: View {
 //            .cornerRadius(15)
 //            .shadow(radius: 5)
             
-            // Game controls
             if viewModel.isGameOver {
                 VStack(spacing: 15) {
                     Text(viewModel.winner ?? "Draw")
