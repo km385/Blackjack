@@ -119,4 +119,5 @@ struct GameView: View {
 
 #Preview {
     GameView(viewModel: BlackjackViewModel())
+        
 }

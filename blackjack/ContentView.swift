@@ -20,7 +20,7 @@ struct ContentView: View {
                         .font(.system(size: 40, weight: .bold))
                         .padding(.top)
                     
-                    ProgressView(value: Double(viewModel.timeRemaining), total: 120)
+                    ProgressView(value: Double(viewModel.timeRemaining), total: 30)
                         .frame(height: 10)
                         .padding(.horizontal)
                 }
@@ -35,12 +35,13 @@ struct ContentView: View {
                 }
             }
         }
+        
     }
+    
 }
-
-
 
 #Preview {
     ContentView(viewModel: BlackjackViewModel())
+        
 }
 

@@ -36,6 +36,6 @@ struct CardView: View {
     }
 }
 
-//#Preview {
-//    CardView(card: BlackjackModel.Card, faceUp: true)
-//}
+#Preview {
+    CardView(card: BlackjackModel.Card(suit: "1", value: "2"), faceUp: true)    
+}

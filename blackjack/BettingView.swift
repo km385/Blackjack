@@ -21,15 +21,27 @@ struct BettingView: View {
                 .foregroundColor(.green)
             
             HStack(spacing: 30) {
-                Button("-10") {
-                    viewModel.betAmount = max(10, viewModel.betAmount - 10)
-                }
-                .disabled(viewModel.betAmount <= 10)
-                .font(.title2)
-                .padding()
-                .background(viewModel.betAmount <= 10 ? Color.gray : Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+                Text("-10")
+                  .font(.title2)
+                  .padding()
+                  .background(viewModel.betAmount <= 10 ? Color.gray : Color.blue)
+                  .foregroundColor(.white)
+                  .cornerRadius(10)
+                  .highPriorityGesture(
+                      TapGesture()
+                          .onEnded { _ in
+                              viewModel.betAmount = max(10, viewModel.betAmount - 10)
+                          }
+                  )
+                  .gesture(
+                      LongPressGesture(minimumDuration: 0.5)
+                          .onEnded { _ in
+                              viewModel.betAmount = max(10, viewModel.betAmount - 50)
+                          }
+                  )
+                  .disabled(viewModel.betAmount <= 10)
+                                
+                
                 
                 Text("$\(viewModel.betAmount)")
                     .font(.title)
@@ -43,15 +55,38 @@ struct BettingView: View {
                             .stroke(Color.blue, lineWidth: 2)
                     )
                 
-                Button("+10") {
-                    viewModel.betAmount = min(500, viewModel.betAmount + 10)
-                }
-                .disabled(viewModel.betAmount >= 500)
-                .font(.title2)
-                .padding()
-                .background(viewModel.betAmount >= 500 ? Color.gray : Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
+                Text("+10")
+                  .font(.title2)
+                  .padding()
+                  .background(viewModel.betAmount >= 500 || viewModel.betAmount >= viewModel.playerBalance ? Color.gray : Color.blue)
+                  .foregroundColor(.white)
+                  .cornerRadius(10)
+                  .highPriorityGesture(
+                      TapGesture()
+                          .onEnded { _ in
+                              // If player balance > 500, limit the bet to 500
+                              if viewModel.playerBalance > 500 {
+                                  viewModel.betAmount = min(500, viewModel.betAmount + 10)
+                              } else {
+                                  // If player balance is less than 500, use the player balance
+                                  viewModel.betAmount = min(viewModel.playerBalance, viewModel.betAmount + 10)
+                              }
+                          }
+                  )
+                  .gesture(
+                      LongPressGesture(minimumDuration: 0.5)
+                          .onEnded { _ in
+                              // If player balance > 500, limit the bet to 500
+                              if viewModel.playerBalance > 500 {
+                                  viewModel.betAmount = min(500, viewModel.betAmount + 50)
+                              } else {
+                                  // If player balance is less than 500, use the player balance
+                                  viewModel.betAmount = min(viewModel.playerBalance, viewModel.betAmount + 50)
+                              }
+                          }
+                  )
+                  .disabled(viewModel.betAmount >= 500 || viewModel.betAmount >= viewModel.playerBalance)
+
             }
             
             Button("Place Bet") {
@@ -75,4 +110,5 @@ struct BettingView: View {
 
 #Preview {
     BettingView(viewModel: BlackjackViewModel())
+        
 }

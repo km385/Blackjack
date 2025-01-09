@@ -75,7 +75,25 @@ struct BlackjackModel {
     mutating func shuffleDeck() {
         deck.shuffle()
     }
-        
+    
+    mutating func resetGame() {
+            self.deck = BlackjackModel.createDeck()
+            self.playerHand = []
+            self.dealerHand = []
+            self.playerScore = 0
+            self.dealerScore = 0
+            self.isGameOver = false
+            self.winner = nil
+            self.isPlayerStanding = false
+            self.currentBet = 0
+            self.canDoubleDown = false
+            self.isTimeUp = false
+            self.isGameStarted = false
+            self.playerBalance = 400
+            shuffleDeck()
+            startNewGame()
+        }
+    
     mutating func startNewGame() {
         currentBet = 0
         playerHand = []
@@ -93,17 +111,20 @@ struct BlackjackModel {
         canDoubleDown = true
     }
     
+    
     private mutating func settleBet() {
-        if winner?.contains("Player") ?? false {
-            if winner?.contains("Blackjack") ?? false {
-                playerBalance += Int(Double(currentBet) * 2.5)  // Blackjack pays 3:2
-            } else {
-                playerBalance += currentBet * 2  // Regular win pays 1:1
+        guard isGameOver else { return }
+
+        if let winner = winner {
+            if winner == "Player Wins" || winner == "Player Wins - Dealer Bust" {
+                playerBalance += currentBet * 2  // Standardowe wygrane 1:1
+            } else if winner == "Player Blackjack!" {
+                playerBalance += Int(Double(currentBet) * 2.5)  // Blackjack płaci 3:2
+            } else if winner == "Draw" {
+                playerBalance += currentBet  // Remis - zwrot zakładu
             }
-        } else if winner?.contains("Draw") ?? false {
-            playerBalance += currentBet  // Push returns the bet
+            // Jeśli dealer wygrał, nie zmieniamy salda (gracz już stracił zakład)
         }
-        // In case of dealer win, bet is already deducted
     }
         
     // Funkcja, która dodaje kartę do ręki gracza
@@ -152,12 +173,12 @@ struct BlackjackModel {
         
         return score
     }
-        
+    
+    
     private mutating func checkGameOver() {
-        // Check for Blackjack (21 with first two cards)
         let playerHasBlackjack = playerScore == 21 && playerHand.count == 2
         let dealerHasBlackjack = dealerScore == 21 && dealerHand.count == 2
-        
+
         if playerHasBlackjack || dealerHasBlackjack {
             isGameOver = true
             if playerHasBlackjack && dealerHasBlackjack {
@@ -167,18 +188,12 @@ struct BlackjackModel {
             } else {
                 winner = "Dealer Blackjack!"
             }
-            settleBet()
-            return
-        }
-        
-        if playerScore > 21 {
+        } else if playerScore > 21 {
             isGameOver = true
             winner = "Dealer Wins - Player Bust"
-            settleBet()
         } else if dealerScore > 21 {
             isGameOver = true
             winner = "Player Wins - Dealer Bust"
-            settleBet()
         } else if isPlayerStanding {
             isGameOver = true
             if playerScore > dealerScore {
@@ -188,8 +203,9 @@ struct BlackjackModel {
             } else {
                 winner = "Draw"
             }
-            settleBet()
         }
+        
+        settleBet() // Wywołujemy settleBet() tylko raz, gdy isGameOver = true
     }
         
     struct Card: Identifiable {

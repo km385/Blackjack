@@ -12,7 +12,7 @@ class BlackjackViewModel : ObservableObject {
     
     @Published private var game: BlackjackModel
     @Published var betAmount: Int = 10
-    @Published var timeRemaining: Int = 60
+    @Published var timeRemaining: Int = 30
     @Published var isTimeUp: Bool = false
     
     private var timer: Timer?
@@ -26,7 +26,7 @@ class BlackjackViewModel : ObservableObject {
         guard !hasTimerStarted else { return }
         
         hasTimerStarted = true
-        timeRemaining = 60
+        timeRemaining = 30
         isTimeUp = false
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
@@ -55,6 +55,8 @@ class BlackjackViewModel : ObservableObject {
             objectWillChange.send()
         }
     }
+    
+
     
     var currentBet: Int {
         game.currentBet
@@ -111,6 +113,17 @@ class BlackjackViewModel : ObservableObject {
             game.playerHits()
             objectWillChange.send()
         }
+    }
+    
+    func resetGame() {
+        game.resetGame()
+        betAmount = 10
+        timeRemaining = 30
+        isTimeUp = false
+        
+        timer = nil
+        hasTimerStarted = false
+        objectWillChange.send()
     }
     
     func playerStands() {

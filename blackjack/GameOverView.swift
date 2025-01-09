@@ -22,6 +22,19 @@ struct GameOverView: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.green)
+            
+            Button(action: {
+                viewModel.resetGame()
+                
+            }, label: {
+                Text("Start New Game")
+                    .font(.title2)
+                    .padding()
+                    .frame(width: 200)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(15)
+            })
         }
         .padding(30)
         .background(Color.white)
