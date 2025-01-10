@@ -18,8 +18,8 @@
 		3F9F44262D2E923A0004E8BE /* BlackjackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44252D2E923A0004E8BE /* BlackjackModel.swift */; };
 		3F9F44282D2E924F0004E8BE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44272D2E924F0004E8BE /* CardView.swift */; };
 		3F9F442C2D2E95D10004E8BE /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F442B2D2E95D10004E8BE /* BettingView.swift */; };
-		3F9F442E2D2E96340004E8BE /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F442D2D2E96340004E8BE /* GameOverView.swift */; };
 		3F9F44302D2E964A0004E8BE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F442F2D2E964A0004E8BE /* GameView.swift */; };
+		3F9F44322D3168ED0004E8BE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44312D3168ED0004E8BE /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,8 @@
 		3F9F44252D2E923A0004E8BE /* BlackjackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackjackModel.swift; sourceTree = "<group>"; };
 		3F9F44272D2E924F0004E8BE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		3F9F442B2D2E95D10004E8BE /* BettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingView.swift; sourceTree = "<group>"; };
-		3F9F442D2D2E96340004E8BE /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		3F9F442F2D2E964A0004E8BE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		3F9F44312D3168ED0004E8BE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 			children = (
 				3F9F43F92D2E91BF0004E8BE /* blackjackApp.swift */,
 				3F9F43FB2D2E91BF0004E8BE /* ContentView.swift */,
-				3F9F442D2D2E96340004E8BE /* GameOverView.swift */,
+				3F9F44312D3168ED0004E8BE /* HeaderView.swift */,
 				3F9F442F2D2E964A0004E8BE /* GameView.swift */,
 				3F9F44232D2E92210004E8BE /* BlackjackViewModel.swift */,
 				3F9F442B2D2E95D10004E8BE /* BettingView.swift */,
@@ -275,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F9F442E2D2E96340004E8BE /* GameOverView.swift in Sources */,
+				3F9F44322D3168ED0004E8BE /* HeaderView.swift in Sources */,
 				3F9F43FC2D2E91BF0004E8BE /* ContentView.swift in Sources */,
 				3F9F44242D2E92210004E8BE /* BlackjackViewModel.swift in Sources */,
 				3F9F44262D2E923A0004E8BE /* BlackjackModel.swift in Sources */,
@@ -451,8 +451,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,8 +479,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

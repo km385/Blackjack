@@ -111,9 +111,7 @@ struct GameView: View {
             } else {
                 HStack(spacing: 20) {
                     Button(action: {
-                        withAnimation(.spring()) {
-                            viewModel.playerHits()
-                        }
+                        viewModel.playerHits()
                     }) {
                         Text("Hit")
                             .font(.title2)
@@ -125,9 +123,7 @@ struct GameView: View {
                     }
                     
                     Button(action: {
-                        withAnimation(.spring()) {
-                            viewModel.playerStands()
-                        }
+                        viewModel.playerStands()
                     }) {
                         Text("Stand")
                             .font(.title2)
@@ -138,21 +134,21 @@ struct GameView: View {
                             .cornerRadius(15)
                     }
                     
-                    if viewModel.canDoubleDown {
-                        Button(action: {
-                            withAnimation(.spring()) {
-                                viewModel.doubleDown()
-                            }
-                        }) {
-                            Text("2x")
-                                .font(.title2)
-                                .padding()
-                                .frame(width: 100)
-                                .background(Color.purple)
-                                .foregroundColor(.white)
-                                .cornerRadius(15)
-                        }
+                    
+                    Button(action: {
+                        viewModel.doubleDown()
+                    }) {
+                        Text("2x")
+                            .font(.title2)
+                            .padding()
+                            .frame(width: 100)
+                            .background(viewModel.canDoubleDown ? Color.purple : Color.gray)
+                            .foregroundColor(.white)
+                            .cornerRadius(15)
                     }
+                    .disabled(!viewModel.canDoubleDown)
+                        
+                    
                 }
             }
         }
@@ -162,4 +158,5 @@ struct GameView: View {
 
 #Preview {
     GameView(viewModel: BlackjackViewModel())
+    
 }

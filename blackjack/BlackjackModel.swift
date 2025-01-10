@@ -95,7 +95,6 @@ struct BlackjackModel {
         }
     
     mutating func startNewGame() {
-        // Sprawdzamy, czy użytkownik ma 0 na koncie
         if playerBalance == 0 {
             isGameOver = true
             winner = "Game Over - Insufficient Funds"
@@ -137,6 +136,7 @@ struct BlackjackModel {
         
     
     mutating func playerHits() {
+        canDoubleDown = false
         playerHand.append(deck.removeFirst())
         playerScore = calculateScore(for: playerHand)
         checkGameOver()
@@ -144,16 +144,19 @@ struct BlackjackModel {
     }
 
     mutating func playerStands() {
+        canDoubleDown = false
         isPlayerStanding = true
         dealerPlays()
         print("Player hits \(playerScore)")
     }
         
     mutating func dealerPlays() {
+        
         while dealerScore < 17 {
             dealerHand.append(deck.removeFirst())
             dealerScore = calculateScore(for: dealerHand)
         }
+        
         checkGameOver()
     }
         
@@ -198,7 +201,7 @@ struct BlackjackModel {
             }
         }
         
-        settleBet() // Wywołujemy settleBet() tylko raz, gdy isGameOver = true
+        settleBet() 
     }
         
     struct Card: Identifiable {

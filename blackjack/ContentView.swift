@@ -1,13 +1,8 @@
-//
-//  ContentView.swift
-//  blackjack
-//
-//  Created by student on 08/01/2025.
-//
-
 import SwiftUI
+
 struct ContentView: View {
     @ObservedObject var viewModel: BlackjackViewModel
+    @State private var showAlert = false
     
     var body: some View {
         ZStack {
@@ -15,33 +10,37 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
-                VStack(spacing: 10) {
-                    Text("Blackjack")
-                        .font(.system(size: 40, weight: .bold))
-                        .padding(.top)
-                    
-                    ProgressView(value: Double(viewModel.timeRemaining), total: 30)
-                        .frame(height: 10)
-                        .padding(.horizontal)
-                }
-                .padding()
+                HeaderView(viewModel: viewModel)
                 
-                if viewModel.isTimeUp {
-                    GameOverView(viewModel: viewModel)
-                } else if viewModel.currentBet == 0 {
+                if viewModel.currentBet == 0 {
                     BettingView(viewModel: viewModel)
                 } else {
                     GameView(viewModel: viewModel)
                 }
             }
         }
+        .onChange(of: viewModel.isTimeUp) {
+            showAlert = true
+        }
+        .alert("Koniec gry", isPresented: $showAlert) {
+            Button("Zagraj ponownie") {
+                viewModel.resetGame()
+            }
+        } message: {
+            Text("Twój wynik: \(String(viewModel.playerBalance))")
+        }
+        .onAppear {
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+            AppDelegate.orientationLock = .portrait
+        }.onDisappear {
+            AppDelegate.orientationLock = .all
+        }
+        
         
     }
-    
 }
 
-#Preview {
+#Preview("Portrait", traits: .portrait) {
     ContentView(viewModel: BlackjackViewModel())
         
 }
-
