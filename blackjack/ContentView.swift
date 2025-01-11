@@ -20,7 +20,9 @@ struct ContentView: View {
             }
         }
         .onChange(of: viewModel.isTimeUp) {
-            showAlert = true
+            if viewModel.isTimeUp {
+                showAlert = true
+            } 
         }
         .alert("Koniec gry", isPresented: $showAlert) {
             Button("Zagraj ponownie") {
