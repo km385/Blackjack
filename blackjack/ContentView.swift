@@ -22,14 +22,15 @@ struct ContentView: View {
         .onChange(of: viewModel.isTimeUp) {
             if viewModel.isTimeUp {
                 showAlert = true
-            } 
+            }
+            
         }
-        .alert("Koniec gry", isPresented: $showAlert) {
-            Button("Zagraj ponownie") {
+        .alert("Game over", isPresented: $showAlert) {
+            Button("Play again") {
                 viewModel.resetGame()
             }
         } message: {
-            Text("Twój wynik: \(String(viewModel.playerBalance))")
+            Text("Your score: \(String(viewModel.playerBalance))")
         }
         .onAppear {
             UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")

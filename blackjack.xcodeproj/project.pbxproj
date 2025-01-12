@@ -20,6 +20,11 @@
 		3F9F442C2D2E95D10004E8BE /* BettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F442B2D2E95D10004E8BE /* BettingView.swift */; };
 		3F9F44302D2E964A0004E8BE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F442F2D2E964A0004E8BE /* GameView.swift */; };
 		3F9F44322D3168ED0004E8BE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44312D3168ED0004E8BE /* HeaderView.swift */; };
+		3F9F443E2D33DA180004E8BE /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F443D2D33DA180004E8BE /* ActionButton.swift */; };
+		3F9F44402D33DA2E0004E8BE /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F443F2D33DA2E0004E8BE /* BalanceView.swift */; };
+		3F9F44422D33DAC40004E8BE /* GameControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44412D33DAC40004E8BE /* GameControlsView.swift */; };
+		3F9F44442D33DADF0004E8BE /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44432D33DADF0004E8BE /* GameOverView.swift */; };
+		3F9F44462D33DB040004E8BE /* HandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44452D33DB040004E8BE /* HandView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,11 @@
 		3F9F442B2D2E95D10004E8BE /* BettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BettingView.swift; sourceTree = "<group>"; };
 		3F9F442F2D2E964A0004E8BE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		3F9F44312D3168ED0004E8BE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		3F9F443D2D33DA180004E8BE /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3F9F443F2D33DA2E0004E8BE /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		3F9F44412D33DAC40004E8BE /* GameControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlsView.swift; sourceTree = "<group>"; };
+		3F9F44432D33DADF0004E8BE /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		3F9F44452D33DB040004E8BE /* HandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +118,13 @@
 			children = (
 				3F9F43F92D2E91BF0004E8BE /* blackjackApp.swift */,
 				3F9F43FB2D2E91BF0004E8BE /* ContentView.swift */,
+				3F9F44412D33DAC40004E8BE /* GameControlsView.swift */,
+				3F9F44432D33DADF0004E8BE /* GameOverView.swift */,
 				3F9F44312D3168ED0004E8BE /* HeaderView.swift */,
+				3F9F443D2D33DA180004E8BE /* ActionButton.swift */,
+				3F9F443F2D33DA2E0004E8BE /* BalanceView.swift */,
 				3F9F442F2D2E964A0004E8BE /* GameView.swift */,
+				3F9F44452D33DB040004E8BE /* HandView.swift */,
 				3F9F44232D2E92210004E8BE /* BlackjackViewModel.swift */,
 				3F9F442B2D2E95D10004E8BE /* BettingView.swift */,
 				3F9F44252D2E923A0004E8BE /* BlackjackModel.swift */,
@@ -276,12 +291,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F9F44322D3168ED0004E8BE /* HeaderView.swift in Sources */,
+				3F9F44402D33DA2E0004E8BE /* BalanceView.swift in Sources */,
 				3F9F43FC2D2E91BF0004E8BE /* ContentView.swift in Sources */,
+				3F9F44422D33DAC40004E8BE /* GameControlsView.swift in Sources */,
 				3F9F44242D2E92210004E8BE /* BlackjackViewModel.swift in Sources */,
 				3F9F44262D2E923A0004E8BE /* BlackjackModel.swift in Sources */,
 				3F9F43FA2D2E91BF0004E8BE /* blackjackApp.swift in Sources */,
+				3F9F443E2D33DA180004E8BE /* ActionButton.swift in Sources */,
+				3F9F44462D33DB040004E8BE /* HandView.swift in Sources */,
 				3F9F442C2D2E95D10004E8BE /* BettingView.swift in Sources */,
 				3F9F44302D2E964A0004E8BE /* GameView.swift in Sources */,
+				3F9F44442D33DADF0004E8BE /* GameOverView.swift in Sources */,
 				3F9F44282D2E924F0004E8BE /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

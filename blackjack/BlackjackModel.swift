@@ -140,14 +140,12 @@ struct BlackjackModel {
         playerHand.append(deck.removeFirst())
         playerScore = calculateScore(for: playerHand)
         checkGameOver()
-        print("Player hits \(playerScore)")
     }
 
     mutating func playerStands() {
         canDoubleDown = false
         isPlayerStanding = true
         dealerPlays()
-        print("Player hits \(playerScore)")
     }
         
     mutating func dealerPlays() {
@@ -164,7 +162,12 @@ struct BlackjackModel {
         var score = 0
     
         for card in hand {
-            score += card.numericValue ?? 0
+            if card.value == "A" {
+                score += score + 11 <= 21 ? 11 : 1
+            } else {
+                score += card.numericValue
+            }
+            
         }
         
         return score
@@ -201,7 +204,7 @@ struct BlackjackModel {
             }
         }
         
-        settleBet() 
+        settleBet()
     }
         
     struct Card: Identifiable {
@@ -209,14 +212,14 @@ struct BlackjackModel {
         let suit: String
         let value: String
         
-        var numericValue: Int? {
+        var numericValue: Int {
             switch value {
             case "A":
                 return 11
             case "K", "Q", "J":
                 return 10
             default:
-                return Int(value)
+                return Int(value) ?? 0
             }
         }
     }
