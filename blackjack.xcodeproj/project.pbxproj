@@ -25,6 +25,7 @@
 		3F9F44422D33DAC40004E8BE /* GameControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44412D33DAC40004E8BE /* GameControlsView.swift */; };
 		3F9F44442D33DADF0004E8BE /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44432D33DADF0004E8BE /* GameOverView.swift */; };
 		3F9F44462D33DB040004E8BE /* HandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F44452D33DB040004E8BE /* HandView.swift */; };
+		3FAC3ECC2D36656900F9D6FA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC3ECB2D36656900F9D6FA /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		3F9F44412D33DAC40004E8BE /* GameControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlsView.swift; sourceTree = "<group>"; };
 		3F9F44432D33DADF0004E8BE /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		3F9F44452D33DB040004E8BE /* HandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandView.swift; sourceTree = "<group>"; };
+		3FAC3ECB2D36656900F9D6FA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				3F9F442F2D2E964A0004E8BE /* GameView.swift */,
 				3F9F44452D33DB040004E8BE /* HandView.swift */,
 				3F9F44232D2E92210004E8BE /* BlackjackViewModel.swift */,
+				3FAC3ECB2D36656900F9D6FA /* Card.swift */,
 				3F9F442B2D2E95D10004E8BE /* BettingView.swift */,
 				3F9F44252D2E923A0004E8BE /* BlackjackModel.swift */,
 				3F9F44272D2E924F0004E8BE /* CardView.swift */,
@@ -299,6 +302,7 @@
 				3F9F43FA2D2E91BF0004E8BE /* blackjackApp.swift in Sources */,
 				3F9F443E2D33DA180004E8BE /* ActionButton.swift in Sources */,
 				3F9F44462D33DB040004E8BE /* HandView.swift in Sources */,
+				3FAC3ECC2D36656900F9D6FA /* Card.swift in Sources */,
 				3F9F442C2D2E95D10004E8BE /* BettingView.swift in Sources */,
 				3F9F44302D2E964A0004E8BE /* GameView.swift in Sources */,
 				3F9F44442D33DADF0004E8BE /* GameOverView.swift in Sources */,

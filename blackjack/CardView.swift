@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct CardView: View {
-    let card: BlackjackModel.Card
+    let card: Card
     let faceUp: Bool
     
     var body: some View {
@@ -37,5 +37,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(card: BlackjackModel.Card(suit: "1", value: "2"), faceUp: true)    
+    CardView(card: Card(suit: "1", value: "2"), faceUp: true)
 }

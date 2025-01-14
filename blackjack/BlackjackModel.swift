@@ -101,7 +101,7 @@ struct BlackjackModel {
             isTimeUp = true
             return
         }
-
+        
         currentBet = 0
         playerHand = []
         dealerHand = []
@@ -207,20 +207,5 @@ struct BlackjackModel {
         settleBet()
     }
         
-    struct Card: Identifiable {
-        let id = UUID()
-        let suit: String
-        let value: String
-        
-        var numericValue: Int {
-            switch value {
-            case "A":
-                return 11
-            case "K", "Q", "J":
-                return 10
-            default:
-                return Int(value) ?? 0
-            }
-        }
-    }
+    
 }

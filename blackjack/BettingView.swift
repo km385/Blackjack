@@ -9,16 +9,33 @@ import SwiftUI
 
 struct BettingView: View {
     @ObservedObject var viewModel: BlackjackViewModel
+    @State private var showAlert = false
     
     var body: some View {
         VStack(spacing: 20) {
             Text("Place your bet")
                 .font(.title)
                 .fontWeight(.bold)
+            HStack {
+                Text("Balance: $\(viewModel.playerBalance)")
+                    .font(.title2)
+                    .foregroundColor(.green)
+                Button(action: {
+                        showAlert = true
+                    }) {
+                        Image(systemName: "info.circle.fill")
+                            .font(.title2)
+                            .foregroundColor(.blue)
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Information"),
+                            message: Text("You can increase your bet by a $100 when you long press the adjust bet button."),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    }
+            }
             
-            Text("Balance: $\(viewModel.playerBalance)")
-                .font(.title2)
-                .foregroundColor(.green)
             
             HStack(spacing: 30) {
                 Text("-10")
@@ -82,8 +99,11 @@ struct BettingView: View {
                           }
                   )
                   .disabled(viewModel.betAmount >= 500 || viewModel.betAmount >= viewModel.playerBalance)
+                
+                
 
             }
+            
             
             Button("Place Bet") {
                 viewModel.placeBet()

@@ -44,7 +44,7 @@ class BlackjackViewModel : ObservableObject {
         timer?.invalidate()
         timer = nil
         isTimeUp = true
-        objectWillChange.send()
+
     }
 
     func placeBet() {
@@ -52,7 +52,7 @@ class BlackjackViewModel : ObservableObject {
             if !hasTimerStarted {
                 startTimer() // Start timer only on first bet
             }
-            objectWillChange.send()
+
         }
     }
     
@@ -70,11 +70,11 @@ class BlackjackViewModel : ObservableObject {
         game.canDoubleDown && game.playerBalance >= game.currentBet
     }
         
-    var playerHand: [BlackjackModel.Card] {
+    var playerHand: [Card] {
         game.playerHand
     }
     
-    var dealerHand: [BlackjackModel.Card] {
+    var dealerHand: [Card] {
         game.dealerHand
     }
     
@@ -108,14 +108,16 @@ class BlackjackViewModel : ObservableObject {
                 isTimeUp = true
                 timeRemaining = 0
             }
-            objectWillChange.send()
+            if betAmount > game.playerBalance{
+                betAmount = playerBalance
+            }
         }
     }
         
     func playerHits() {
         if !isTimeUp {
             game.playerHits()
-            objectWillChange.send()
+
         }
     }
     
@@ -127,20 +129,18 @@ class BlackjackViewModel : ObservableObject {
         
         timer = nil
         hasTimerStarted = false
-        objectWillChange.send()
     }
     
     func playerStands() {
         if !isTimeUp {
             game.playerStands()
-            objectWillChange.send()
         }
     }
     
     func doubleDown() {
         if !isTimeUp {
             if game.doubleDown() {
-                objectWillChange.send()
+
             }
         }
     }
